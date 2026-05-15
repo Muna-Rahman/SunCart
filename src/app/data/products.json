@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings and beach days.",
+    "image": "https://unsplash.com/photos/black-ray-ban-wayfarer-sunglasses-on-beach-sand-SYx3UCHZJlo",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Cotton Summer Shirt",
+    "brand": "BreezeWear",
+    "price": 25,
+    "rating": 4.5,
+    "stock": 15,
+    "description": "Breathable 100% cotton shirt designed to keep you cool in the tropical heat.",
+    "image": "https://unsplash.com/photos/a-row-of-shirts-hanging-on-a-clothes-rack-roksTutEPSo",
+    "category": "Apparel"
+  },
+  {
+    "id": 3,
+    "name": "Mineral Sunscreen SPF 50",
+    "brand": "GlowGuard",
+    "price": 12,
+    "rating": 4.9,
+    "stock": 25,
+    "description": "Non-greasy, water-resistant mineral sunscreen with high UV protection.",
+    "image": "https://unsplash.com/photos/a-person-holding-a-bottle-of-sunscreen-in-their-hand-3Uj7ttuo5kk",
+    "category": "Skincare"
+  },
+  {
+    "id": 4,
+    "name": "Quick-Dry Beach Towel",
+    "brand": "SandFree",
+    "price": 20,
+    "rating": 4.3,
+    "stock": 12,
+    "description": "Ultra-absorbent microfiber towel that repels sand and dries in minutes.",
+    "image": "https://unsplash.com/photos/a-stack-of-multicolored-towels-sitting-on-top-of-each-other-ggcfm_mSjLg",
+    "category": "Beach Gear"
+  },
+  {
+    "id": 5,
+    "name": "Wide Brim Straw Hat",
+    "brand": "IslandVibe",
+    "price": 18,
+    "rating": 4.6,
+    "stock": 8,
+    "description": "Classic straw hat offering excellent face and neck shade for outdoor events.",
+    "image": "https://unsplash.com/photos/a-womans-hand-holding-a-straw-hat-in-front-of-a-field-3F89zoGaZAk",
+    "category": "Accessories"
+  },
+  {
+    "id": 6,
+    "name": "Portable Electric Fan",
+    "brand": "CoolMist",
+    "price": 30,
+    "rating": 4.8,
+    "stock": 5,
+    "description": "Rechargeable handheld fan with 3-speed settings and a built-in water mister.",
+    "image": "https://unsplash.com/photos/a-hand-holds-a-blue-fan-against-the-sky-2kU8kK_vKUw",
+    "category": "Gadgets"
+  }
+]
