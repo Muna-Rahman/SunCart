@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -26,7 +29,8 @@ export default function LoginPage() {
       if (authError) {
         setError(authError.message || "Invalid email or password credentials.");
       } else {
-        router.push("/");
+     
+        router.push(callbackUrl);
         router.refresh();
       }
     } catch (err) {
@@ -41,7 +45,7 @@ export default function LoginPage() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: callbackUrl, 
       });
     } catch (err) {
       setError("Failed to initialize Google authentication.");
@@ -92,7 +96,7 @@ export default function LoginPage() {
 
           {error && (
             <div className="p-4 bg-error/10 border border-error/20 text-error rounded-2xl text-xs font-semibold leading-relaxed">
-              ⚠️ {error}
+              {error}
             </div>
           )}
 
@@ -142,5 +146,20 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+
+export default function LoginPage() {
+  return (
+    <Suspense 
+      fallback={
+        <div className="min-h-[80vh] flex items-center justify-center">
+          <span className="loading loading-spinner loading-lg text-summer-ocean"></span>
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
   );
 }
