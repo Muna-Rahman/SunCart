@@ -20,6 +20,11 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
+  
+      if (typeof authClient.init === "function") {
+        await authClient.init();
+      }
+
       const { error: authError } = await authClient.signUp.email({
         email,
         password,

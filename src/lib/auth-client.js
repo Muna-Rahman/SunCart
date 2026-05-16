@@ -1,17 +1,5 @@
-import { betterAuth } from "better-auth";
+import { createAuthClient } from "better-auth/react";
 
-export const auth = betterAuth({
-  database: {
-    provider: "sqlite",
-    url: "file:./dev.db",
-  },
-  emailAndPassword: {
-    enabled: true,
-  },
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "placeholder",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "placeholder",
-    },
-  },
+export const authClient = createAuthClient({
+  baseURL: "http://localhost:3000"
 });
