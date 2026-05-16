@@ -73,7 +73,7 @@ export default function RegisterPage() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="John Doe"
+              placeholder="Mahbuba Rahman"
               className="input input-bordered w-full rounded-2xl border-slate-200 focus:outline-none focus:border-summer-ocean h-12 text-sm"
               required
             />
@@ -121,8 +121,8 @@ export default function RegisterPage() {
           </div>
 
           {error && (
-            <div className="p-4 bg-error/10 border border-error/20 text-error rounded-2xl text-xs font-semibold leading-relaxed">
-              ⚠️ {error}
+            <div className="p-4 bg-error/10 border border-error/20 text-error rounded-2xl text-red-950 text-xs font-semibold leading-relaxed">
+              ERROR{error}
             </div>
           )}
 
