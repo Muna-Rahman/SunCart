@@ -19,41 +19,37 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
 
-    try {
-  
-      if (typeof authClient.init === "function") {
-        await authClient.init();
-      }
-
-      const { error: authError } = await authClient.signUp.email({
-        email,
-        password,
-        name,
-        image: photoUrl || undefined,
-      });
-
-      if (authError) {
-        setError(authError.message || "Registration failed. Account might already exist.");
-      } else {
+   
+    await authClient.signUp.email({
+      email,
+      password,
+      name,
+      image: photoUrl || undefined,
+    }, {
+      onRequest: () => {
+        setLoading(true);
+      },
+      onSuccess: () => {
+        setLoading(false);
         router.push("/login");
+      },
+      onError: (ctx) => {
+        setLoading(false);
+        setError(ctx.error.message || "Registration failed. Account might already exist.");
       }
-    } catch (err) {
-      setError("An unexpected network error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   const handleGoogleLogin = async () => {
     setError("");
-    try {
-      await authClient.signIn.social({
-        provider: "google",
-        callbackURL: "/",
-      });
-    } catch (err) {
-      setError("Failed to initialize Google authentication.");
-    }
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    }, {
+      onError: (ctx) => {
+        setError(ctx.error.message || "Failed to initialize Google authentication.");
+      }
+    });
   };
 
   return (
@@ -127,7 +123,7 @@ export default function RegisterPage() {
 
           {error && (
             <div className="p-4 bg-error/10 border border-error/20 text-error rounded-2xl text-red-950 text-xs font-semibold leading-relaxed">
-              ERROR{error}
+              ⚠️ {error}
             </div>
           )}
 
@@ -146,6 +142,7 @@ export default function RegisterPage() {
 
         <button
           onClick={handleGoogleLogin}
+          type="button"
           className="btn btn-block btn-outline border-2 border-slate-200 hover:bg-slate-50 hover:text-slate-800 hover:border-slate-300 h-12 rounded-2xl font-bold flex items-center justify-center gap-3 transition-colors text-slate-600"
         >
           <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">

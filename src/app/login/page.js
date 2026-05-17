@@ -20,36 +20,37 @@ function LoginContent() {
     setError("");
     setLoading(true);
 
-    try {
-      const { error: authError } = await authClient.signIn.email({
-        email,
-        password,
-      });
-
-      if (authError) {
-        setError(authError.message || "Invalid email or password credentials.");
-      } else {
-     
+    
+    await authClient.signIn.email({
+      email,
+      password,
+    }, {
+      onRequest: () => {
+        setLoading(true);
+      },
+      onSuccess: () => {
+        setLoading(false);
         router.push(callbackUrl);
         router.refresh();
+      },
+      onError: (ctx) => {
+        setLoading(false);
+        setError(ctx.error.message || "Invalid email or password credentials.");
       }
-    } catch (err) {
-      setError("An unexpected network error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   const handleGoogleLogin = async () => {
     setError("");
-    try {
-      await authClient.signIn.social({
-        provider: "google",
-        callbackURL: callbackUrl, 
-      });
-    } catch (err) {
-      setError("Failed to initialize Google authentication.");
-    }
+  
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: callbackUrl,
+    }, {
+      onError: (ctx) => {
+        setError(ctx.error.message || "Failed to initialize Google authentication.");
+      }
+    });
   };
 
   return (
@@ -96,7 +97,7 @@ function LoginContent() {
 
           {error && (
             <div className="p-4 bg-error/10 border border-error/20 text-error rounded-2xl text-xs font-semibold leading-relaxed">
-              {error}
+              ⚠️ {error}
             </div>
           )}
 
@@ -115,6 +116,7 @@ function LoginContent() {
 
         <button
           onClick={handleGoogleLogin}
+          type="button"
           className="btn btn-block btn-outline border-2 border-slate-200 hover:bg-slate-50 hover:text-slate-800 hover:border-slate-300 h-12 rounded-2xl font-bold flex items-center justify-center gap-3 transition-colors text-slate-600"
         >
           <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
@@ -148,7 +150,6 @@ function LoginContent() {
     </div>
   );
 }
-
 
 export default function LoginPage() {
   return (
