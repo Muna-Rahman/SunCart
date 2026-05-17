@@ -1,28 +1,36 @@
 import { betterAuth } from "better-auth";
-import Database from "better-sqlite3";
-import path from "path";
+import { createClient } from "@libsql/client";
 
 
-const dbPath = path.join(process.cwd(), "dev.db");
-const db = new Database(dbPath);
+const libsqlClient = createClient({
+  url: "file:dev.db",
+});
 
 export const auth = betterAuth({
-  database: db,
-  advanced: {
-    autoSyncSchema: true
+  /
+  database: {
+    provider: "sqlite",
+    dialect: "sqlite",
+    execute: async (sql, args) => {
+      const res = await libsqlClient.execute({ sql, args });
+      return { rows: res.rows };
+    }
   },
-  onInit: async (auth) => {
-    await auth.init();
+  
+
+  onInit: {
+    createSchema: process.env.NODE_ENV !== "production",
   },
-  secret: process.env.BETTER_AUTH_SECRET || "fallback_secret_string_32_chars_long_minimum",
+
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false
+    autoSignIn: true,
   },
+
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "placeholder",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "placeholder",
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     },
   },
 });
