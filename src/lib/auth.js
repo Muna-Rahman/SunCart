@@ -1,23 +1,23 @@
 import { betterAuth } from "better-auth";
 import { createClient } from "@libsql/client";
 
-
 const libsqlClient = createClient({
   url: "file:dev.db",
 });
 
 export const auth = betterAuth({
-  /
+  
   database: {
     provider: "sqlite",
     dialect: "sqlite",
-    execute: async (sql, args) => {
-      const res = await libsqlClient.execute({ sql, args });
-      return { rows: res.rows };
+    execute: (sql, args) => {
+      return libsqlClient.execute({ sql, args }).then((res) => {
+        return { rows: res.rows };
+      });
     }
   },
   
-
+ 
   onInit: {
     createSchema: process.env.NODE_ENV !== "production",
   },
