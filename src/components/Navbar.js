@@ -38,7 +38,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Desktop Centered/Right Links */}
+      {}
       <div className="flex items-center gap-4 sm:gap-6">
         <ul className="menu menu-horizontal px-1 font-bold text-slate-600 gap-6 hidden md:flex">
           <li><Link href="/" className="hover:text-blue-600 transition-colors">Home</Link></li>

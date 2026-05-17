@@ -4,7 +4,7 @@ const path = require("path");
 const dbPath = path.join(process.cwd(), "dev.db");
 const db = new Database(dbPath);
 
-// Manually forge the core user schema table needed for credentials
+
 db.exec(`
   CREATE TABLE IF NOT EXISTS user (
     id TEXT PRIMARY KEY,

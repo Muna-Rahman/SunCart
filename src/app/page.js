@@ -1,8 +1,10 @@
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
 import productsData from './data/products.json';
 import LottieHero from '@/components/LottieHero'; 
 
-export default async function HomePage() {
+export default function HomePage() {
   const popularProducts = productsData.slice(0, 3);
   const uniqueBrands = [...new Set(productsData.map((p) => p.brand))].slice(0, 4);
 
@@ -16,7 +18,7 @@ export default async function HomePage() {
           
           <div className="lg:col-span-7 space-y-12 text-left order-2 lg:order-1 px-2">
             
-            <div className="relative inline-flex items-center justify-center w-90 h-34 group select-none">
+            <div className="relative inline-flex items-center justify-center w-100 h-36 mt-6 group select-none">
               <div className="absolute inset-0 w-full h-full opacity-90 scale-125 pointer-events-none">
                 <LottieHero url="https://lottie.host/b63f60fb-8dec-423f-b3ef-8464df088475/hPhKn6ytcd.lottie" />
               </div>
@@ -84,9 +86,9 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {popularProducts.map((product) => {
             const imageAssetMap = {
-              1: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=600",
-              2: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=600",
-              3: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600"
+              1: "https://4sighteyecare.com/wp-content/uploads/2025/02/ethan-robertson-SYx3UCHZJlo-unsplash.jpg",
+              2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbPavkKZ9_7MJe2dzgJmCDJ3De-a3GY854dA&s",
+              3: "https://beautybooth.com.bd/_next/image?url=https%3A%2F%2Fcdn.beautybooth.com.bd%2Fuploads%2Fall%2FkRRNuyvmLvwO6Sc7JwFFb47qpyR1WCTV0OwUoTGi.jpg&w=1920&q=75"
             };
 
             const finalProductImage = imageAssetMap[product.id] || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600";
