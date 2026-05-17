@@ -1,23 +1,12 @@
 import { betterAuth } from "better-auth";
-import { createClient } from "@libsql/client";
-
-const libsqlClient = createClient({
-  url: "file:dev.db",
-});
 
 export const auth = betterAuth({
-  
+
   database: {
     provider: "sqlite",
-    dialect: "sqlite",
-    execute: (sql, args) => {
-      return libsqlClient.execute({ sql, args }).then((res) => {
-        return { rows: res.rows };
-      });
-    }
+    url: "file:dev.db",
   },
-  
- 
+
   onInit: {
     createSchema: process.env.NODE_ENV !== "production",
   },
@@ -29,8 +18,10 @@ export const auth = betterAuth({
 
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || "785292155948-soi1ev3h395k9uokn5nlun09uhgsr1in.apps.googleusercontent.com",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "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",
     },
   },
+
+  trustedOrigins: ["http://localhost:3001", "http://localhost:3000"],
 });
