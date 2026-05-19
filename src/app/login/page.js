@@ -20,26 +20,24 @@ const LoginPage = () => {
   const router = useRouter();
 
   const handleLoginFunc = async (data) => {
-    setLoading(false);
-    setServerError("");
+    setLoading(true); 
+    setServerError(""); 
 
     try {
-      const { data: res, error } = await authClient.signIn.email({
+      const response = await authClient.signIn.email({
         email: data.email,
         password: data.password,
-        rememberMe: true,
-        callbackURL: "/",
       });
-
-      if (error) {
-        setServerError(error.message || "Invalid email or password.");
+      
+      if (response?.error) {
+        setServerError("Invalid email or password.");
       } else {
-       
         router.push("/");
-        router.refresh();
       }
     } catch (err) {
-      setServerError("An unexpected database connection error occurred.");
+      setServerError("Something went wrong. Please check your network and try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,12 +52,10 @@ const LoginPage = () => {
     <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100 p-4">
       <div className="p-6 rounded-xl bg-white w-full max-w-sm shadow-xl">
         
-        {}
         <h2 className="font-bold text-3xl text-center mb-6 text-blue-800 mt-4">
           LOGIN
         </h2>
 
-        {}
         {serverError && (
           <div className="p-3 mb-4 bg-red-100 border border-red-200 text-red-600 text-sm rounded-xl font-semibold">
             ⚠️ {serverError}
@@ -84,31 +80,30 @@ const LoginPage = () => {
           </fieldset>
           
           <fieldset className="fieldset">
-  <legend className="fieldset-legend font-bold text-xl">Password</legend>
-  
-  {}
-  <div className="relative w-full flex items-center">
-    <input
-      type={isShowPassword ? "text" : "password"}
-      className="input input-bordered w-full pr-10" 
-      placeholder="Type here password"
-      {...register("password", {
-        required: "Password field is required",
-      })}
-    />
-    <span
-      className="absolute right-3 cursor-pointer text-slate-500 hover:text-slate-700 flex items-center"
-      onClick={() => setIsShowPassword(!isShowPassword)}
-    >
-      {isShowPassword ? <FaEyeSlash /> : <FaEye />}
-    </span>
-  </div>
+            <legend className="fieldset-legend font-bold text-xl">Password</legend>
+            
+            <div className="relative w-full flex items-center">
+              <input
+                type={isShowPassword ? "text" : "password"}
+                className="input input-bordered w-full pr-10" 
+                placeholder="Type here password"
+                {...register("password", {
+                  required: "Password field is required",
+                })}
+              />
+              <span
+                className="absolute right-3 cursor-pointer text-slate-500 hover:text-slate-700 flex items-center"
+                onClick={() => setIsShowPassword(!isShowPassword)}
+              >
+                {isShowPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
 
-  {errors.password && (
-    <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
-  )}
-</fieldset>
-          {}
+            {errors.password && (
+              <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+            )}
+          </fieldset>
+          
           <button className="btn w-full bg-slate-950 text-white hover:bg-slate-900 mt-2">
             Login
           </button>
@@ -116,7 +111,6 @@ const LoginPage = () => {
 
         <div className="divider text-xs text-slate-400 my-4">OR</div>
 
-        {}
         <button 
           type="button" 
           onClick={handleGoogleLogin} 
@@ -125,7 +119,6 @@ const LoginPage = () => {
           Log in using your Google account
         </button>
 
-        {}
         <p className="mt-4 text-sm text-center text-slate-600">
           Don't have an account?{" "}
           <Link href="/register" className="text-blue-600 font-bold hover:underline">

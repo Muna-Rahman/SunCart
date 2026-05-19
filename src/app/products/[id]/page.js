@@ -14,7 +14,6 @@ export default function ProductDetailsPage({ params: paramsPromise }) {
   const { data: session, isPending } = authClient.useSession();
   const [product, setProduct] = useState(null);
 
-
   const imageAssetMap = {
     1: "https://4sighteyecare.com/wp-content/uploads/2025/02/ethan-robertson-SYx3UCHZJlo-unsplash.jpg",
     2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbPavkKZ9_7MJe2dzgJmCDJ3De-a3GY854dA&s",
@@ -49,7 +48,6 @@ export default function ProductDetailsPage({ params: paramsPromise }) {
     <div className="min-h-[85vh] bg-[#fafafa] py-12 md:py-20 px-4 md:px-12 flex items-center">
       <div className="max-w-6xl mx-auto bg-white rounded-[3.5rem] border border-slate-100 p-6 md:p-12 shadow-sm w-full grid md:grid-cols-12 gap-12 items-center">
         
-        {}
         <div className="md:col-span-5 relative aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden bg-slate-50 border border-slate-100">
           <img 
             src={imageAssetMap[product.id] || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600"} 
@@ -58,11 +56,10 @@ export default function ProductDetailsPage({ params: paramsPromise }) {
             referrerPolicy="no-referrer"
           />
           <div className="absolute top-5 right-5 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-sm z-10 font-black text-slate-800 flex items-center gap-1.5">
-             {product.rating}
+             ⭐ {product.rating}
           </div>
         </div>
 
-        {}
         <div className="md:col-span-7 space-y-8">
           <div className="space-y-3">
             <span className="text-xs font-black uppercase tracking-[0.3em] text-blue-950 block">
@@ -78,9 +75,9 @@ export default function ProductDetailsPage({ params: paramsPromise }) {
           </div>
 
           <div className="p-6 bg-[#fafafa] rounded-3xl border border-slate-100 space-y-3">
-            <h3 className="text-xs font-black uppercase tracking-widest text-slate-400">Seasonal Product Specification</h3>
+            <h3 className="text-xs font-black uppercase tracking-widest text-slate-400">Product Details</h3>
             <p className="text-slate-600 font-medium leading-relaxed">
-              {product.description || "Premium grade summer essential crafted utilizing fine, breathable raw materials. Meticulously tested to guarantee enduring personal comfort during intense tropical days."}
+              {product.description || "A high-quality summer essential made from lightweight, breathable materials. Perfect for staying comfortable and stylish on warm sunny days."}
             </p>
           </div>
 

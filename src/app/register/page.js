@@ -37,7 +37,7 @@ const RegisterPage = () => {
         router.push("/login");
       }
     } catch (err) {
-      setServerError("Could not establish a connection to the registration database.");
+      setServerError("Sign up failed. Please check your network and try again.");
     }
   };
 

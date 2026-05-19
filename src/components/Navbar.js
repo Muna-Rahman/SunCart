@@ -17,7 +17,6 @@ export default function Navbar() {
   return (
     <nav className="navbar bg-white px-4 sm:px-8 md:px-12 h-20 border-b border-slate-50 sticky top-0 z-50 flex items-center justify-between">
       
-      {}
       <div className="flex items-center gap-2">
         <div className="dropdown md:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle text-slate-700">
@@ -38,7 +37,6 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {}
       <div className="flex items-center gap-4 sm:gap-6">
         <ul className="menu menu-horizontal px-1 font-bold text-slate-600 gap-6 hidden md:flex">
           <li><Link href="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
@@ -46,7 +44,6 @@ export default function Navbar() {
           <li><Link href="/profile" className="hover:text-blue-600 transition-colors">My Profile</Link></li>
         </ul>
 
-        {}
         {session ? (
           <div className="dropdown dropdown-end flex items-center">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border border-slate-100 bg-slate-50 overflow-hidden flex items-center justify-center w-10 h-10">
@@ -74,9 +71,14 @@ export default function Navbar() {
             </ul>
           </div>
         ) : (
-          <Link href="/login" className="btn btn-sm sm:btn-md bg-slate-900 border-none text-white rounded-xl sm:rounded-2xl font-bold px-4 sm:px-6">
-            Log In
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/register" className="btn btn-sm sm:btn-md btn-outline border-slate-200 text-slate-700 rounded-xl sm:rounded-2xl font-bold px-4 sm:px-6 hover:bg-slate-50 hover:text-slate-900">
+              Register
+            </Link>
+            <Link href="/login" className="btn btn-sm sm:btn-md bg-slate-900 border-none text-white rounded-xl sm:rounded-2xl font-bold px-4 sm:px-6">
+              Log In
+            </Link>
+          </div>
         )}
       </div>
     </nav>
