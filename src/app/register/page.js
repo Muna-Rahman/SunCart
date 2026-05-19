@@ -52,12 +52,12 @@ const RegisterPage = () => {
     <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100 p-4">
       <div className="p-6 rounded-xl bg-white w-full max-w-sm shadow-xl">
         
-        {}
+        
         <h2 className="font-bold text-3xl text-center mb-6 text-blue-800">
          Registration
         </h2>
 
-        {}
+        
         {serverError && (
           <div className="p-3 mb-4 bg-red-100 border border-red-200 text-red-600 text-sm rounded-xl font-semibold">
             ⚠️ {serverError}
@@ -81,7 +81,7 @@ const RegisterPage = () => {
             )}
           </fieldset>
 
-          {}
+          
           <fieldset className="fieldset">
             <legend className="fieldset-legend font-bold">Photo-url(link)</legend>
             <input
@@ -133,7 +133,7 @@ const RegisterPage = () => {
             )}
           </fieldset>
 
-          {}
+          
           <button className="btn w-full bg-slate-800 text-white hover:bg-slate-900 mt-2">
             Register
           </button>
@@ -141,7 +141,7 @@ const RegisterPage = () => {
 
         <div className="divider text-xs text-slate-400 my-4">OR</div>
 
-        {}
+        
         <button 
           type="button" 
           onClick={handleGoogleLogin} 
@@ -150,7 +150,7 @@ const RegisterPage = () => {
           Use Google account to log in
         </button>
 
-        {}
+        
         <p className="mt-4 text-sm text-center text-slate-600">
           Already registered?{" "}
           <Link href="/login" className="text-blue-500 font-bold hover:underline">

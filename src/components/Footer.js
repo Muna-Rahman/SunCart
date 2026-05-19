@@ -30,7 +30,7 @@ export default function Footer() {
             Sylhet, Bangladesh
           </p>
           
-          {}
+          
           <div className="flex items-center gap-3 pt-1">
             <a href="#" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <img src="https://img.icons8.com/?size=100&id=mALwz43zNFpF&format=png&color=000000" alt="Facebook" className="w-6 h-6 object-contain" />
