@@ -16,11 +16,13 @@ export const auth = betterAuth({
     client,
   }),
 
+  
+  baseURL: process.env.BETTER_AUTH_URL || "https://sun-cart-one.vercel.app",
+
   emailAndPassword: {
     enabled: true,
   },
 
- 
   account: {
     accountLinking: {
       enabled: true,
