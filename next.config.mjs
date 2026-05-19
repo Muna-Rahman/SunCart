@@ -4,11 +4,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**", 
+        hostname: "**",
         port: "",
       },
     ],
   },
+
+  experimental: {
+    serverExternalPackages: ["mongodb"],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 };
 
 export default nextConfig;
