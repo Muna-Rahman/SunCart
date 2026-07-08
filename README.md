@@ -93,7 +93,7 @@ Follow these steps to run the project locally on your machine.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/suncart.git
+git clone https://github.com/Muna-Rahman/suncart.git
 cd suncart
 ```
 
